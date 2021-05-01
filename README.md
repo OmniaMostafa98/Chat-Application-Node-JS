@@ -1,7 +1,7 @@
 # Chat-Application-Node-JS
-#BroadCast
+# BroadCast<br>
 run this command-> node BroadCast.js
 
-#Private chat between two clients
+# Private chat between two clients
 run this command-> node SpecificUser.js
 
