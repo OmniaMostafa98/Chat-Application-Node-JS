@@ -20,7 +20,7 @@
     <ul id="messages"></ul>
     <form id="form" action="">
       <input id="input" autocomplete="off" />
-     
+      <input id="to" placeholder="Write id of user"/>
       <button type="submit" name="submit"  id="submit" >Send</button>
     </form>
     <script src="/socket.io/socket.io.js"></script>
@@ -31,14 +31,15 @@
         var form = document.getElementById('form');
         var input = document.getElementById('input');
         var submit=document.getElementById('submit');
-        
+        var userId=document.getElementById('to');
       
         form.addEventListener('submit', function(e) {
           e.preventDefault();
          
-          if (input.value) {
-            socket.emit('chat message', input.value);
+          if (input.value && userId.value) {
+            socket.emit('chat message', input.value,userId.value);
             input.value = '';
+            userId.value = '';
            
           }
         });

@@ -5,13 +5,21 @@ const server = http.createServer(app);
 const { Server } = require("socket.io");
 const io = new Server(server);
 
-app.get('/', (req, res) => {
-  res.sendFile(__dirname + '/index.html');
+
+app.get('/:id', (req, res) => {
+  res.sendFile(__dirname + '/specificuser.html');
+ 
+  
 });
 
 io.on('connection', (socket) => {
-    socket.on('chat message', (msg) => {
-      io.emit('chat message', msg);
+  console.log(socket.id);
+    socket.on('chat message', (msg,user) => {
+     // io.emit('chat message', msg);
+      io.to(socket.id).emit('chat message', msg);
+      io.to(user).emit('chat message', msg);
+      
+      
     });
   });
 
